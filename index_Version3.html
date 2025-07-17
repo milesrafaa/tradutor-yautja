@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tradutor YAUTJA</title>
+    <style>
+        body {
+            background: #200000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 650px;
+            margin: 40px auto;
+            background: #420000;
+            padding: 2em;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(100,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #ff2a2a;
+            letter-spacing: 3px;
+        }
+        .info {
+            text-align: center;
+            font-size: 1.1em;
+            margin-bottom: 1em;
+            color: #ffd6d6;
+        }
+        textarea {
+            width: 100%;
+            padding: 1em;
+            font-size: 1.1em;
+            border-radius: 6px;
+            border: none;
+            margin-bottom: 1em;
+            background: #320000;
+            color: #fff;
+        }
+        button {
+            width: 100%;
+            padding: 0.8em;
+            font-size: 1.1em;
+            border-radius: 6px;
+            border: none;
+            background: #ff2a2a;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #b30000;
+        }
+        #result {
+            background: #320000;
+            color: #fff2f2;
+            padding: 1em;
+            border-radius: 6px;
+            margin-top: 1em;
+            font-size: 1.3em;
+            min-height: 60px;
+            word-break: break-word;
+        }
+        .alphabet {
+            text-align: center;
+            margin-top: 2em;
+        }
+        .alphabet img {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(100,0,0,0.5);
+            border: 2px solid #ff2a2a;
+        }
+        .credit {
+            text-align: center;
+            font-size: 1em;
+            color: #ff9797;
+            margin-top: 2em;
+            font-weight: bold;
+            letter-spacing: 1px;
+            background: #200000;
+            padding: 0.5em 0;
+        }
+        @media (max-width: 700px) {
+            .container {
+                margin: 10px;
+                padding: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tradutor YAUTJA</h1>
+        <div class="info">
+            Digite uma frase para ver a tradução para o alfabeto YAUTJA.<br>
+            Cada letra e número é convertido no símbolo correspondente.<br>
+            Veja o alfabeto abaixo!
+        </div>
+        <textarea id="inputText" rows="3" placeholder="Digite o texto aqui..."></textarea>
+        <button onclick="traduzirYAUTJA()">Traduzir</button>
+        <div id="result"></div>
+        <div class="alphabet">
+            <h2 style="color:#ff2a2a;">Alfabeto YAUTJA</h2>
+            <img src="image1" alt="Alfabeto YAUTJA">
+        </div>
+        <div class="credit">
+            Site desenvolvido por @milesrafa
+        </div>
+    </div>
+    <script>
+        // Mapeamento do alfabeto YAUTJA (substitua por SVG ou imagens reais se quiser os símbolos!)
+        const yautjaAlphabet = {
+            "A": "⎾", "B": "⎬", "C": "⎚", "D": "⎣", "E": "⎧", "F": "⎩", "G": "⎰", "H": "⎨", "I": "⎧", "J": "⎩",
+            "K": "⎪", "L": "⎫", "M": "⎬", "N": "⎭", "O": "⎮", "P": "⎯", "Q": "⎰", "R": "⎲", "S": "⎳", "T": "⎴",
+            "U": "⎵", "V": "⎶", "W": "⎷", "X": "⎸", "Y": "⎹", "Z": "⎺",
+            "0": "⎼", "1": "⎽", "2": "⎾", "3": "⎿", "4": "⏀", "5": "⏁", "6": "⏂", "7": "⏃", "8": "⏄", "9": "⏅"
+        };
+
+        function traduzirYAUTJA() {
+            const texto = document.getElementById('inputText').value.toUpperCase();
+            let resultado = '';
+            for (let char of texto) {
+                if (yautjaAlphabet[char]) {
+                    resultado += yautjaAlphabet[char] + ' ';
+                } else if (char === ' ') {
+                    resultado += '   '; // Espaço maior para separar palavras
+                } else {
+                    resultado += char; // Mantém caracteres não mapeados
+                }
+            }
+            document.getElementById('result').innerText = resultado.trim();
+        }
+    </script>
+</body>
+</html>
